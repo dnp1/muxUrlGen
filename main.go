@@ -151,6 +151,6 @@ func printStringSlice(s []string) {
 }
 
 func main() {
-	_ = (GetUrlVarsPermutations(testShort, false))
+	_ = (GetUrlVarsPermutations(testLong, true))
 	printStringSlice(GetUrlVarsPermutations(testShort, false))
 }
