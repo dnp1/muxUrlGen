@@ -81,7 +81,7 @@ func TestNonVarUrl(t *testing.T) {
 		sort.Strings(c.want)
 
 		if !testEq(c.want, got) {
-			t.Errorf("Reverse(%q) == %q, want %q", c.in, got, c.want)
+			t.Errorf("GetUrlVarsPermutations(%q) == %q, want %q", c.in, got, c.want)
 		}
 	}
 }
@@ -139,7 +139,7 @@ func TestVarUrlShortMode(t *testing.T) {
 		sort.Strings(c.want)
 
 		if !testEq(c.want, got) {
-			t.Errorf("Reverse(%q) == %q, want %q", c.in, got, c.want)
+			t.Errorf("GetUrlVarsPermutations(%q) == %q, want %q", c.in, got, c.want)
 		}
 	}
 }
