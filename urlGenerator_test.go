@@ -1,4 +1,4 @@
-package urlGen
+package muxUrlGen
 
 import "testing"
 import "sort"
