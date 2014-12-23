@@ -1,8 +1,7 @@
-package main
+package urlGen
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"regexp"
 	"strings"
@@ -97,7 +96,6 @@ func urlBuilder(url string, isLong bool) []string {
 			vars[i] = cw
 		}
 
-		fmt.Println(url[:firstMatchIndex[0]], vars, mandatoryVars, &permutations)
 		permute(url[:firstMatchIndex[0]], vars, mandatoryVars, &permutations)
 
 		// If there aren't mandatory vars, the "preffix" is a valid url
@@ -113,7 +111,7 @@ func urlBuilder(url string, isLong bool) []string {
 
 func permute(preffix string, alphabet []string, mustContain []string, permutations *[]string) {
 	var newAlphabet []string = nil
-	fmt.Println(len(alphabet))
+
 	if len(alphabet) == 0 {
 		return
 	}
@@ -136,21 +134,7 @@ func GetUrlVarsPermutations(url string, isLong bool) []string {
 
 	err := urlErrors(url, isLong)
 	if err != nil {
-		log.Fatal(err)
+		log.Panic(err)
 	}
 	return urlBuilder(url, isLong)
-}
-
-var testLong = "/handler/home/{id:[0-9]+}?/a/{userId}?/c/{homeId:[0-9A-Za-z]+}?/d/{homeId1}?/c/{homeId2}?"
-var testShort = "/handler/{id:[0-9]+}?/{userId}?/{homeId:[0-9A-Za-z]+}?/{homeId1}?/{homeId2}?"
-
-func printStringSlice(s []string) {
-	for _, w := range s {
-		fmt.Println(w)
-	}
-}
-
-func main() {
-	_ = (GetUrlVarsPermutations(testLong, true))
-	printStringSlice(GetUrlVarsPermutations(testShort, false))
 }
